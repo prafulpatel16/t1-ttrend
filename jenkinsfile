@@ -17,12 +17,6 @@ environment {
     }
 
 
-    stages {
-        stage('clone-code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/prafulpatel16/t1-ttrend.git'
-            }
-        }
-    }
+
 }
 
