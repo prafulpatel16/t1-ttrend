@@ -1,19 +1,30 @@
 pipeline {
-	agent {
-		node {
-			label "java-slave"
-		}
-	}
+    agent {
+        node {
+            label "java-slave"
+        }
+    }
 
-	stages{
-		stage('build'){
-            steps{
-                echo "------------ build started -----------"
+    stages {
+        stage('Build') {
+            steps {
+                echo "------------ Build Started -----------"
                 sh 'mvn clean install -Dmaven.test.skip=true'
-                echo "------------ build completed -----------"
-		}
+                echo "------------ Build Completed -----------"
+            }
         }
 
-	}
-
+        stage('Sonar Analysis') {
+            environment {
+                scannerHome = tool 'sonarqube-server' 
+            }
+            steps {
+                echo "------------ Sonar Analysis Started -----------"
+                withSonarQubeEnv('sonarqube-server') {
+                    sh "${scannerHome}/bin/sonar-scanner" 
+                }
+                echo "------------ Sonar Analysis Completed -----------" 
+            }   
+        }
+    }
 }
