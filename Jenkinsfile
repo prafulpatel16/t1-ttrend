@@ -22,7 +22,8 @@ pipeline {
                 script {
                     echo "------------ Sonar Analysis Started -----------"
                     withSonarQubeEnv('sonarqube-server') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=prafulpatel16_t1-ttrend -Dsonar.organization=prafulpatel16"
+                        sh "${scannerHome}/bin/sonar-scanner -X -Dsonar.projectKey=prafulpatel16_t1-ttrend -Dsonar.organization=prafulpatel16"
+                        sh sonar-scanner -X
                     }
                     echo "------------ Sonar Analysis Completed -----------"
                 }
