@@ -24,17 +24,14 @@ import twitter4j.conf.ConfigurationBuilder;
 @RestController
 public class RepositoryDetailsController {
 
-
-
-
     @Autowired
     private Environment env;
 
 	@RequestMapping("/")
 	public String getRepos() throws IOException {
-		GitHub github = new GitHubBuilder().withPassword("valaxytech@gmail.com", "XXXXXXXX").build();
+		GitHub github = new GitHubBuilder().withPassword("stalin.lenin@gmail.com", "XXXXXXXX").build();
 		GHRepositorySearchBuilder builder = github.searchRepositories();
-		return "Greetings from Valaxy Technologies";
+		return "Greetings from Spring Boot!";
 	}
 
 	@GetMapping("/trends")
