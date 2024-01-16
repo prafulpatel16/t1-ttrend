@@ -19,14 +19,12 @@ pipeline {
                 scannerHome = tool 'sonarqube-server' 
             }
             steps {
-                script {
-                    echo "------------ Sonar Analysis Started -----------"
-                    withSonarQubeEnv('sonarqube-server') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=prafulpatel16_t1-ttrend -Dsonar.organization=prafulpatel16"
-                    }
-                    echo "------------ Sonar Analysis Completed -----------"
-                }
-            }   
+                echo '<--------------- Sonar Analysis started  --------------->'
+                withSonarQubeEnv('SonarServer') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }    
+                echo '<--------------- Sonar Analysis stopped  --------------->'                
+            }
         }
     }
 }
